@@ -1,0 +1,9 @@
+[init]
+	defaultBranch = main
+[user]
+	name = NotNullBool
+	email = 106617184+NotNullBool@users.noreply.github.com
+[pull]
+	rebase = true
+[alias]
+	Acommit = !git add -A && git commit -m

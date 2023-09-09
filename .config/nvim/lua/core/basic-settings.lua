@@ -36,6 +36,8 @@ opt.termguicolors = true
 
 opt.scrolloff = 8
 
+opt.signcolumn = "yes"
+
 opt.swapfile = false
 opt.backup = false
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
