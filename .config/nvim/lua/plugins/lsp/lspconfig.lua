@@ -2,6 +2,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+    	"nvim-telescope/telescope.nvim",
 	"hrsh7th/cmp-nvim-lsp",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
@@ -14,15 +15,18 @@ return {
 	local mason_lspconfig = require("mason-lspconfig")
 
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 	local keymap = vim.keymap -- for concisenesss
 	local opts = { noremap = true, silent = true }
+
 ---@diagnostic disable-next-line: unused-local
 	local on_attach = function(client, bufnr)
 	    opts.buffer = bufnr
 
 	    opts.desc = "Show LSP references"
-	    keymap.set("n", "gR", "<cmd> Telescope lsp_references<CR>", opts) -- show definition, references
+	    keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+
+	    opts.desc = "Show workspace diagnostics"
+	    keymap.set("n", "gW", "<cmd>Telescope diagnostics<CR>", opts)
 
 	    opts.desc = "Got to declaration"
 	    keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -46,7 +50,7 @@ return {
 	    keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
 	    opts.desc = "Show line diagnostics"
-	    keymap.set("n", "<leader>d", vim.diagnostics.open_float, opts)
+	    keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
 	    opts.desc = "Go to previous diagnostic"
 	    keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
