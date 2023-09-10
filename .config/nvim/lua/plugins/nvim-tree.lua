@@ -11,9 +11,6 @@ return{
 	-- set termguicolors to enable highlight groups
 	vim.opt.termguicolors = true
 
-	-- empty setup using defaults
-	require("nvim-tree").setup()
-
 	-- OR setup with some options
 	require("nvim-tree").setup({
 	    --sort_by = "case_sensitive",
@@ -30,7 +27,7 @@ return{
 	})
 
 	local keymap = vim.keymap
-	
+
 	keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 	keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
 	keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })

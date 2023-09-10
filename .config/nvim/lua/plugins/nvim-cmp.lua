@@ -20,6 +20,16 @@ return{
 	-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 	require("luasnip.loaders.from_vscode").lazy_load()
 
+	local cmp_mappings = {
+		["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+	    	["<C-j>"] = cmp.mapping.select_next_item(),
+		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+		['<C-f>'] = cmp.mapping.scroll_docs(4),
+		['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
+		['<C-e>'] = cmp.mapping.abort(), -- close completion window
+		['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	    }
+
 	cmp.setup({
 	    completion = {
 		completeopt = "menu,menuone,preview,noselect",
@@ -33,15 +43,7 @@ return{
 		-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 		end,
 	    },
-	    mapping = cmp.mapping.preset.insert({
-		["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-	    	["<C-j>"] = cmp.mapping.select_next_item(),
-		['<C-b>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
-		['<C-e>'] = cmp.mapping.abort(), -- close completion window
-		['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-	    }),
+	    mapping = cmp.mapping.preset.insert(cmp_mappings),
 	    sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		-- { name = 'vsnip' }, -- For vsnip users.
@@ -59,7 +61,6 @@ return{
 		}),
 	    },
 	})
-
 	-- Set configuration for specific filetype.
 	cmp.setup.filetype('gitcommit', {
 	sources = cmp.config.sources({
@@ -71,7 +72,7 @@ return{
 
 	-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 	cmp.setup.cmdline({ '/', '?' }, {
-	    mapping = cmp.mapping.preset.cmdline(),
+	    mapping = cmp.mapping.preset.cmdline(cmp_mappings),
 	    sources = {
 	        { name = 'buffer' }
 	    }
@@ -79,10 +80,11 @@ return{
 
 	-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 	cmp.setup.cmdline(':', {
-	    mapping = cmp.mapping.preset.cmdline(),
+	    mapping = cmp.mapping.preset.cmdline(cmp_mappings),
 	    sources = cmp.config.sources({
 		{ name = 'path' }
 	    }, {
+		option = { ignore_cmds = { 'Man', '!' } },
 		{ name = 'cmdline' }
 	    })
 	})

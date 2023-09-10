@@ -5,7 +5,7 @@ vim.g.mapleader = " "
 opt.relativenumber = true
 opt.nu = true
 -- use system clipboard
-opt.clipboard = "unnamedplus"
+-- opt.clipboard = "unnamedplus"
 -- what happens when completion options show
 --opt.completeopt = "menuone,preview"
 -- copy previous line's indent
