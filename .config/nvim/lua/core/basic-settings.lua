@@ -20,7 +20,8 @@ opt.cursorlineopt= "both"
 -- ignore case in searches by default
 opt.ignorecase = true
 -- set how many spaces a tab makes (no expand tab means it will create a tab on 8)
-opt.softtabstop = 4
+opt.tabstop = 4
+-- opt.expandtab = true
 -- how many spaces >> inserts
 opt.shiftwidth = 4
 -- disable word wrap
