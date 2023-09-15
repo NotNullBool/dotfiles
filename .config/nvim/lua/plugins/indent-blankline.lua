@@ -1,6 +1,7 @@
 return {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
 	opts = {
 		space_char_blankline = " ",
 		show_current_context = true,
