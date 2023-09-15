@@ -44,3 +44,11 @@ keymap.set('n', 's', '^i')
 
 keymap.set('n', "<leader><TAB>", ":bn<CR>")
 keymap.set('n', "<leader><S-TAB>", ":bp<CR>")
+
+vim.keymap.set("n", "i", function()
+	if #vim.fn.getline "." == 0 then
+		return [["_cc]]
+	else
+		return "i"
+	end
+end, { expr = true })
