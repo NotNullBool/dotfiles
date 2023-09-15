@@ -2,10 +2,10 @@ local keymap = vim.keymap
 keymap.set('', 'J', "<C-d>zz")
 keymap.set('', 'K', "<C-u>zz")
 
-keymap.set('i', "<C-l>", "<right>")
-keymap.set('i', "<C-h>", "<left>")
-keymap.set('i', "<C-j>", "<down>")
-keymap.set('i', "<C-k>", "<up>")
+keymap.set('i', "<C-L>", "<right>")
+keymap.set('i', "<C-H>", "<left>")
+keymap.set('i', "<C-J>", "<down>")
+keymap.set('i', "<C-K>", "<up>")
 keymap.set('n', "<leader>a", "mzJ`z", {desc = "Append next line"})
 
 keymap.set('n', 'n', "nzzzv")
