@@ -7,7 +7,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		{ "antosha417/nvim-lsp-file-operations", config = true }, -- update nvim-tree names in imports
+		{ "antosha417/nvim-lsp-file-operations", config = true }, -- update nvim-tree names in imports	
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -21,6 +21,7 @@ return {
 
 		---@diagnostic disable-next-line: unused-local
 		local on_attach = function(client, bufnr)
+
 			opts.buffer = bufnr
 
 			opts.desc = "Show LSP references"
@@ -69,7 +70,7 @@ return {
 		--used to enable auto complion
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- Change the Diagnostic symbols in the sign column (gutter)	    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+		-- Change the Diagnostic symbols in the sign column (gutter)    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 		local signs = { Error = " ", Warn = " ", Hint = "󱐋 ", Info = " " }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
@@ -102,6 +103,7 @@ return {
 
 					settings = {
 						Lua = {
+							hint = { enable = true },
 							diagnostics = {
 								global = { "vim" },
 							},
