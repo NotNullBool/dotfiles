@@ -1,6 +1,7 @@
 ---@diagnostic disable: undefined-doc-name, unused-local, undefined-field
 return {
 	"mfussenegger/nvim-dap",
+	event = "VeryLazy",
 	dependencies = {
 		"jay-babu/mason-nvim-dap.nvim",
 		"williamboman/mason.nvim",
