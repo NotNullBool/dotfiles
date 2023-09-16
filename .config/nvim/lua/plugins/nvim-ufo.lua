@@ -23,6 +23,18 @@ return {
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
 
+		local api = vim.api
+		local myGroup = api.nvim_create_augroup("Remember Folds", {clear = true})
+		api.nvim_create_autocmd({"BufWinLeave"}, {
+			group = myGroup,
+			command = "mkview",
+		})
+		api.nvim_create_autocmd({"BufWinEnter"}, {
+			group = myGroup,
+			command = "silent! loadview",
+		})
+
+
 		-- remap for  0.6.1 neovim. may not be needed will leave here in case
 		-- vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 		-- vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)

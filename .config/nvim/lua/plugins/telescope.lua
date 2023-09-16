@@ -5,7 +5,8 @@ return {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
-		{ "stevearc/aerial.nvim", config = true }
+		{ "stevearc/aerial.nvim", config = true },
+		"tsakirist/telescope-lazy.nvim",
 	},
 	config = function()
 		local builtin = require('telescope.builtin')
@@ -23,10 +24,30 @@ return {
 					},
 				},
 			},
+			extensions = {
+				lazy = {
+					-- Optional theme (the extension doesn't set a default theme)
+					-- theme = "ivy",
+					-- Whether or not to show the icon in the first column
+					show_icon = true,
+					-- Mappings for the actions
+					mappings = {
+						open_in_browser = "<C-o>",
+						open_in_file_browser = "<M-b>",
+						open_in_find_files = "<C-f>",
+						open_in_live_grep = "<C-g>",
+						open_plugins_picker = "<C-b>", -- Works only after having called first another action
+						open_lazy_root_find_files = "<C-r>f",
+						open_lazy_root_live_grep = "<C-r>g",
+					},
+					-- Other telescope configuration options
+				},
+			},
 		})
 
 		telescope.load_extension("fzf")
-		telescope.load_extension('aerial')
+		telescope.load_extension("aerial")
+		telescope.load_extension("lazy")
 		vim.keymap.set('n', "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
 		vim.keymap.set('n', "<leader>fg", builtin.live_grep, { desc = "Find string in cwd" })
 		vim.keymap.set('n', "<leader>fb", builtin.buffers, { desc = "Find buffer" })
