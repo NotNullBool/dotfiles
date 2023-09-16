@@ -27,7 +27,7 @@ return {
 		local myGroup = api.nvim_create_augroup("Remember Folds", {clear = true})
 		api.nvim_create_autocmd({"BufWinLeave"}, {
 			group = myGroup,
-			command = "mkview",
+			command = "silent! mkview",
 		})
 		api.nvim_create_autocmd({"BufWinEnter"}, {
 			group = myGroup,

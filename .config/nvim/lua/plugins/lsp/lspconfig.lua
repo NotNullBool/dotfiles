@@ -42,7 +42,7 @@ return {
 			keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 
 			opts.desc = "See available code actions"
-			keymap.set({"n", "v"}, "<leader>lc", vim.lsp.buf.code_action, opts)
+			keymap.set({ "n", "v" }, "<leader>lc", vim.lsp.buf.code_action, opts)
 
 			opts.desc = "Smart rename"
 			keymap.set("n", "<leader>lrn", vim.lsp.buf.rename, opts)
@@ -64,7 +64,6 @@ return {
 
 			opts.desc = "Restart LSP"
 			keymap.set("n", "<leader>lrs", ":LspRestart<CR>", opts)
-
 		end
 
 		--used to enable auto complion
@@ -94,29 +93,28 @@ return {
 
 			-- example of how to overide the default setup
 			--["rust_analyzer"] = function ()
-				--	require("rust-tools").setup {}
-				--end
-				["lua_ls"] = function()
-					lspconfig["lua_ls"].setup({
-						capabilities = capabilities,
-						on_attach = on_attach,
+			--	require("rust-tools").setup {}
+			--end
+			["lua_ls"] = function()
+				lspconfig["lua_ls"].setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
 
-						settings = {
-							Lua = {
-								diagnostics = {
-									global = { "vim" },
-								},
-								workspace = {
-									library = {
-										[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-									},
+					settings = {
+						Lua = {
+							diagnostics = {
+								global = { "vim" },
+							},
+							workspace = {
+								library = {
+									[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 								},
 							},
 						},
-					})
-				end
+					},
+				})
+			end
 
-			})
-
-		end,
-	}
+		})
+	end,
+}
