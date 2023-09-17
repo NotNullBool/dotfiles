@@ -34,6 +34,9 @@ return {
 			command = "silent! loadview",
 		})
 
+		vim.keymap.set('n', "zK", function ()
+			require("ufo.preview"):peekFoldedLinesUnderCursor()
+		end, {desc = "Preview folded lines under cursor"})
 
 		-- remap for  0.6.1 neovim. may not be needed will leave here in case
 		-- vim.keymap.set('n', 'zR', require('ufo').openAllFolds)

@@ -7,6 +7,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		{ "stevearc/aerial.nvim", config = true },
 		"tsakirist/telescope-lazy.nvim",
+		"debugloop/telescope-undo.nvim",
 	},
 	config = function()
 		local builtin = require('telescope.builtin')
@@ -42,12 +43,20 @@ return {
 					},
 					-- Other telescope configuration options
 				},
+				undo = {
+					side_by_side = true,
+					layout_strategy = "vertical",
+					layout_config = {
+						preview_height = 0.8,
+					},
+				},
 			},
 		})
 
 		telescope.load_extension("fzf")
 		telescope.load_extension("aerial")
 		telescope.load_extension("lazy")
+		telescope.load_extension("undo")
 		vim.keymap.set('n', "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
 		vim.keymap.set('n', "<leader>fg", builtin.live_grep, { desc = "Find string in cwd" })
 		vim.keymap.set('n', "<leader>fb", builtin.buffers, { desc = "Find buffer" })
@@ -55,5 +64,6 @@ return {
 		vim.keymap.set('n', "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 		vim.keymap.set('n', "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
 		vim.keymap.set('n', "<leader>ft", "<cmd>Telescope aerial<cr>", { desc = "Fuzzy find functions in file" })
+		vim.keymap.set('n', "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo telescope" })
 	end
 }
