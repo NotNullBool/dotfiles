@@ -3,7 +3,7 @@ local opt = vim.opt
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 opt.confirm = true
-opt.completeopt = "menu,menuone,noselect"
+opt.completeopt = "menu,menuone"
 -- relative line numbers
 opt.relativenumber = true
 opt.nu = true
