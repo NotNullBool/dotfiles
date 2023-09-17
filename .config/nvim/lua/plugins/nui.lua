@@ -1,5 +1,5 @@
 return {
-	"MunifTanjim/nui.nvim",
+	--[[ "MunifTanjim/nui.nvim",
 	lazy = true,
 	init = function()
 		vim.ui.select = function (...)
@@ -97,6 +97,7 @@ return {
 				input_ui:mount()
 			end
 		end
+
 
 		local function override_ui_select()
 			local UISelect = Menu:extend("UISelect")
@@ -196,5 +197,5 @@ return {
 
 		override_ui_input()
 		override_ui_select()
-	end
+	end ]]
 }
