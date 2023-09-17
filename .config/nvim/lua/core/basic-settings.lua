@@ -1,6 +1,9 @@
 local opt = vim.opt
 -- set <Leader> key to space
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+opt.confirm = true
+opt.completeopt = "menu,menuone,noselect"
 -- relative line numbers
 opt.relativenumber = true
 opt.nu = true
@@ -41,6 +44,10 @@ opt.signcolumn = "yes"
 
 opt.swapfile = false
 opt.backup = false
+---@diagnostic disable-next-line: assign-type-mismatch
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
-opt.cmdheight = 0
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	command = ":silent! lua vim.highlight.on_yank({timeout=250})"
+})

@@ -3,6 +3,7 @@ return{
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
+		"hrsh7th/cmp-omni",
 		"hrsh7th/cmp-buffer", --source for text in buffer
 		"FelipeLema/cmp-async-path", -- source for file system
 		"hrsh7th/cmp-cmdline", -- source for cmdline
@@ -57,6 +58,7 @@ return{
 			mapping = cmp.mapping.preset.insert(cmp_mappings),
 			sources = cmp.config.sources({
 				{ name = 'nvim_lsp' },
+				{name = "omni", option = {disable_omnifuncs = {"v:lua.vim.lsp.omnifunc"}}},
 				-- { name = 'vsnip' }, -- For vsnip users.
 				{ name = 'luasnip' }, -- For luasnip users.
 				{ name = 'buffer' }, -- text within current buffer
