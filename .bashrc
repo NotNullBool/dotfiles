@@ -113,3 +113,4 @@ if ! shopt -oq posix; then
 fi
 
 source ./.config/shared_shell_files/shared_config.sh
+. "$HOME/.cargo/env"
