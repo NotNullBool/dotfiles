@@ -42,7 +42,8 @@ return{
 		-- overrides the default highlights with table see `:h synIDattr`
 		overrides = function (colors)
 			return {
-			     NonText = { fg = colors.white }
+				MoreMsg = { fg = colors.bright_green, ctermfg = 121 },
+			    NonText = { fg = colors.white }
 			}
 		end
 		-- You can use overrides as table like this
