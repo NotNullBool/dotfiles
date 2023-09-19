@@ -66,6 +66,10 @@ return {
 
 			opts.desc = "Restart LSP"
 			keymap.set("n", "<leader>lrs", ":LspRestart<CR>", opts)
+
+			if (vim.version().minor > 9) and client.server_capabilities.inlayHintProvider then
+				vim.lsp.inlay_hint(bufnr, true)
+			end
 		end
 
 		--used to enable auto complion
