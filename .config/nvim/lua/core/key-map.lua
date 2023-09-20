@@ -6,16 +6,16 @@ keymap.set('i', "<C-L>", "<right>")
 keymap.set('i', "<C-H>", "<left>")
 keymap.set('i', "<C-J>", "<down>")
 keymap.set('i', "<C-K>", "<up>")
-keymap.set('n', "<leader>a", "mzJ`z", {desc = "Append next line"})
+keymap.set('n', "<leader>a", "mzJ`z", {desc = "Append next line", silent = true})
 
 keymap.set('n', 'n', "nzzzv")
 keymap.set('n', 'N', "Nzzzv")
 
-keymap.set('n', '<C-j>', ":m .+1<CR> ==",{ desc = "Line down"})
-keymap.set('n', '<C-k>', ":m .-2<CR> ==",{ desc = "Line up"})
+keymap.set('n', '<C-j>', ":m .+1<CR> ==",{ desc = "Line down", silent = true})
+keymap.set('n', '<C-k>', ":m .-2<CR> ==",{ desc = "Line up", silent = true})
 
-keymap.set('x', '<C-k>', ":m '<-2<CR>gv=gv",{ desc = "Line up"})
-keymap.set('x', '<C-j>', ":m '>+1<CR>gv=gv",{ desc= "Line down"})
+keymap.set('x', '<C-k>', ":m '<-2<CR>gv=gv",{ desc = "Line up", silent = true})
+keymap.set('x', '<C-j>', ":m '>+1<CR>gv=gv",{ desc= "Line down", silent = true})
 
 keymap.set({'v','n'}, "<leader>r", "r",{ desc = "Regular replace"})
 keymap.set({'v','n'}, "r", "\"_r",{ desc = "Void replace"})
@@ -43,8 +43,8 @@ keymap.set('', ':', ';')
 
 keymap.set('n', 's', '^i')
 
-keymap.set('n', "<leader><TAB>", ":bn<CR>")
-keymap.set('n', "<leader><S-TAB>", ":bp<CR>")
+keymap.set('n', "<leader><TAB>", ":bn<CR>", {silent = true})
+keymap.set('n', "<leader><S-TAB>", ":bp<CR>", { silent = true })
 
 vim.keymap.set("n", "i", function()
 	if #vim.fn.getline "." == 0 then

@@ -8,6 +8,7 @@ return {
 		{ "stevearc/aerial.nvim", config = true },
 		"tsakirist/telescope-lazy.nvim",
 		"debugloop/telescope-undo.nvim",
+		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	config = function()
 		local builtin = require('telescope.builtin')
@@ -57,6 +58,7 @@ return {
 		telescope.load_extension("aerial")
 		telescope.load_extension("lazy")
 		telescope.load_extension("undo")
+		telescope.load_extension("ui-select")
 		vim.keymap.set('n', "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
 		vim.keymap.set('n', "<leader>fg", builtin.live_grep, { desc = "Find string in cwd" })
 		vim.keymap.set('n', "<leader>fb", builtin.buffers, { desc = "Find buffer" })
