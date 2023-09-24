@@ -8,6 +8,7 @@
 
 if [ $(tty) == "/dev/tty1" ]
 then
+	export GTK_THEME=Adwaita:dark
 	export XDG_SESSION_TYPE="x11"
 	. /etc/X11/Xsession
 	exec xmonad

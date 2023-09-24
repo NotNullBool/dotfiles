@@ -1,12 +1,13 @@
 #!/bin/bash
 
 #Exports
+export GTK_THEME=Adwaita:dark
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PATH=/var/lib/flatpak/exports/bin/:$PATH
 export PATH=$HOME/.local/bin/:$PATH
 export PATH=/snap/bin/:$PATH
-# [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+export XDG_DATA_DIRS=/var/lib/snapd/desktop/:$XDG_DATA_DIRS
 
 #Alias
 alias cat="bat --paging=never"

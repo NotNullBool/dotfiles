@@ -2,6 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+source ./.config/shared_shell_files/shared_config.sh
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -112,5 +113,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ./.config/shared_shell_files/shared_config.sh
 . "$HOME/.cargo/env"
