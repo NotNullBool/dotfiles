@@ -10,7 +10,8 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup({{import = "plugins"}, {import = "plugins.lsp"},},{
+require("lazy").setup({{import = "plugins"}, {import = "plugins.lsp"},}
+,{
     install = {
 	colorscheme = { "dracula" },
     },

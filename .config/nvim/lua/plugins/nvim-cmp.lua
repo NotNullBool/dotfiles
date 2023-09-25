@@ -69,7 +69,7 @@ return{
 			}),
 			formatting = {
 				format = lspkind.cmp_format({
-					maxwidth = 50,
+					maxwidth = 80,
 					ellipsis_char = "...",
 				}),
 			},
@@ -89,16 +89,6 @@ return{
 			sources = {
 				{ name = 'buffer' }
 			}
-		})
-		-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-		cmp.setup.cmdline(':', {
-			mapping = cmp.mapping.preset.cmdline(cmp_mappings),
-			sources = cmp.config.sources({
-				{ name = 'async_path' }
-			}, {
-				option = { ignore_cmds = { 'Man', '!' } },
-				{ name = 'cmdline' }
-			})
 		})
 
 	end

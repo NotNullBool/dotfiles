@@ -39,8 +39,17 @@ require("lazy").setup({{
 
 local keymap = vim.keymap
 
--- disable causes odd behaviour with vscode
--- keymap.set('', "<C-w>", '',)
+-- Folding
+keymap.set({ 'n', 'x' }, "za", ":call VSCodeNotify('editor.toggleFold')<CR>", { silent = true })
+keymap.set({ 'n', 'x' }, "zO", ":call VSCodeNotify('editor.unfoldRecursively')<CR>", { silent = true })
+keymap.set({ 'n', 'x' }, "zo", ":call VSCodeNotify('editor.unfold')<CR>", { silent = true })
+keymap.set({ 'n', 'x' }, "zC", ":call VSCodeNotify('editor.foldRecursively')<CR>", { silent = true })
+keymap.set({ 'n', 'x' }, "zc", ":call VSCodeNotify('editor.fold')<CR>", { silent = true })
+keymap.set({ 'n', 'x' }, "zR", ":call VSCodeNotify('editor.unfoldAll')<CR>", { silent = true })
+keymap.set({ 'n', 'x' }, "zM", ":call VSCodeNotify('editor.foldAll')<CR>", { silent = true })
+
+-- Comment
+keymap.set({'n','x','o'}, "gc", ":VSCodeCommentary<CR>", {silent = true})
 
 keymap.set({'v','n'}, "<leader>d", "\"_d",{ desc = "Void delete"})
 
@@ -54,8 +63,6 @@ keymap.set('', ';', ':')
 keymap.set('', ':', ';')
 
 -- keymap.set({'n','x'}, ",", ":call VSCodeNotify('whichkey.show')<CR>", {silent = true})
-keymap.set({'n','x'}, "za", ":call VSCodeNotify('editor.toggleFold')<CR>", {silent = true})
-keymap.set({'n','x','o'}, "gc", ":VSCodeCommentary<CR>", {silent = true})
 keymap.set('n', "<leader>a", "mzJ`z", {desc = "Append next line", silent = true})
 vim.opt.hlsearch = false
 
@@ -68,3 +75,19 @@ keymap.set('x', '<C-j>', ":m '>+1<CR>gv=gv",{ desc= "Line down", silent = true})
 vim.api.nvim_create_autocmd("TextYankPost", {
 	command = ":silent! lua vim.highlight.on_yank({timeout=250})"
 })
+
+-- Skip over folds in vscode
+local function moveCursor(direction)
+    if (vim.fn.reg_recording() == '' and vim.fn.reg_executing() == '') then
+        return ('g' .. direction)
+    else
+        return direction
+    end
+end
+
+vim.keymap.set('n', 'k', function()
+    return moveCursor('k')
+end, { expr = true, remap = true })
+vim.keymap.set('n', 'j', function()
+    return moveCursor('j')
+end, { expr = true, remap = true })
