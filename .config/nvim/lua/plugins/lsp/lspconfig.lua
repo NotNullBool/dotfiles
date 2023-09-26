@@ -98,9 +98,13 @@ return {
 			end,
 
 			-- example of how to overide the default setup
-			--["rust_analyzer"] = function ()
-			--	require("rust-tools").setup {}
-			--end
+			["rust_analyzer"] = function ()
+				vim.g.rust_recommended_style = 0 -- neovim issue(#24075) soft tab stop breaks backspace on inline virtual text
+				lspconfig["rust_analyzer"].setup({
+					capabilities = capabilities,
+					on_attach = on_attach
+				})
+			end,
 			["lua_ls"] = function()
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
