@@ -50,7 +50,18 @@ keymap.set('n', 's', '^i')
 keymap.set('n', "<leader><TAB>", ":bn<CR>", {silent = true})
 keymap.set('n', "<leader><S-TAB>", ":bp<CR>", { silent = true })
 
-vim.keymap.set("n", "i", function()
+keymap.set('c', "<C-k>", "<C-P>")
+
+keymap.set('c', "<C-j>", "<C-n>" )
+
+keymap.set('c', "<CR>", function ()
+	if vim.fn.pumvisible() == 1 then
+		return "<C-y>"
+	end
+	return "<CR>"
+end, { expr = true })
+
+keymap.set("n", "i", function()
 	if #vim.fn.getline "." == 0 then
 		return [["_cc]]
 	else
