@@ -30,8 +30,12 @@ keymap.set('', '<leader>c', "c", {desc = "Regular change"})
 
 keymap.set({'v','n'}, "<leader>y", "\"+y",{ desc = "Yank to clipboard" })
 
-keymap.set('n', "<leader>p", "\"+p", {desc = "Paste from clipboard"})
-keymap.set('n', "<leader>P", "\"+P", {desc = "Paste from clipboard"})
+keymap.set({'v','n'}, "<leader>p", "\"+p", {desc = "Paste from clipboard"})
+keymap.set({'v','n'}, "<leader>P", "\"+P", {desc = "Paste from clipboard"})
+keymap.set('x', "<leader>p", "\"_dh\"+p", {desc = "Paste from clipboard"})
+keymap.set('x', "<leader>P", "\"+p", {desc = "Paste from clipboard"})
+keymap.set('x', 'p', "\"_dhp")
+keymap.set('x', 'P', "p")
 
 keymap.set('n', "<leader>k", ":cprev<CR>zz", {desc = "Quick fix select previous"})
 keymap.set('n', "<leader>j", ":cnext<CR>zz", {desc = "Quick fix select next"})
