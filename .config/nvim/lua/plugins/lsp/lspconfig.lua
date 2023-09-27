@@ -120,6 +120,7 @@ return {
 								library = {
 									[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 								},
+								checkThirdParty = false
 							},
 						},
 					},
