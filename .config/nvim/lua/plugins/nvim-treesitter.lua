@@ -6,8 +6,7 @@ return {
     	local treesitter = require("nvim-treesitter.configs")
 
     	treesitter.setup({ --enable syntax highlighting
-	    highlight = { enable = true },
-	    auto_install = true,
-	})
-    end,
+			highlight = { enable = true },
+		})
+	end,
 }
