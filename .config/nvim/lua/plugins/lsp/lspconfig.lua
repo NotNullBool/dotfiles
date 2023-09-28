@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
@@ -19,37 +20,69 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local keymap = vim.keymap -- for concisenesss
 		local opts = { noremap = true, silent = true }
-
+		-- Under language features you can find the providers! https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#languageFeatures-side
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(env)
 				local bufnr = env.buf
+
 				local client = vim.lsp.get_client_by_id(env.data.client_id)
+---@diagnostic disable-next-line: need-check-nil
+				local server_capabilities = client.server_capabilities
 				opts.buffer = bufnr
 
-				opts.desc = "Show LSP references"
-				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+				if server_capabilities.referencesProvider then
+					opts.desc = "Show LSP references"
+					keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+				end
+
+				if server_capabilities.declarationProvider then
+					opts.desc = "Got to declaration"
+					keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+				end
+
+				if server_capabilities.definitionProvider then
+					opts.desc = "Show LSP definition"
+					keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+				end
+
+				if server_capabilities.typeDefinitionProvider then
+					opts.desc = "Show LSP type definitions"
+					keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+				end
+
+				if server_capabilities.implementationProvider then
+					opts.desc = "Show LSP implementations"
+					keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+				end
+
+				if server_capabilities.codeActionProvider then
+					opts.desc = "See available code actions"
+					keymap.set({ "n", "v" }, "<leader>lc", vim.lsp.buf.code_action, opts)
+				end
+
+				if server_capabilities.renameProvider then
+					opts.desc = "Smart rename"
+					keymap.set("n", "<leader>lrn", vim.lsp.buf.rename, opts)
+				end
+
+				if server_capabilities.hoverProvider then
+					opts.desc = "Show documentation for what is under cursor"
+					keymap.set("n", "<leader>lK", vim.lsp.buf.hover, opts)
+				end
+
+				if server_capabilities.signatureHelpProvider then
+					opts.desc = "Show signature help"
+					keymap.set('n', "gK", vim.lsp.buf.signature_help, opts)
+					keymap.set('i', "<C-k>", vim.lsp.buf.signature_help, opts)
+				end
+
+				if (vim.version().minor > 9) and server_capabilities.inlayHintProvider then
+					vim.lsp.inlay_hint(bufnr, true)
+				end
 
 				opts.desc = "Show workspace diagnostics"
 				keymap.set("n", "gW", "<cmd>Telescope diagnostics<CR>", opts)
-
-				opts.desc = "Got to declaration"
-				keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-
-				opts.desc = "Show LSP definition"
-				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-
-				opts.desc = "Show LSP implementations"
-				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-
-				opts.desc = "Show LSP type definitions"
-				keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-
-				opts.desc = "See available code actions"
-				keymap.set({ "n", "v" }, "<leader>lc", vim.lsp.buf.code_action, opts)
-
-				opts.desc = "Smart rename"
-				keymap.set("n", "<leader>lrn", vim.lsp.buf.rename, opts)
 
 				opts.desc = "Show buffer diagnostics"
 				keymap.set("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
@@ -63,15 +96,10 @@ return {
 				opts.desc = "Go to next diagnostic"
 				keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
-				opts.desc = "Show documentation for what is under cursor"
-				keymap.set("n", "<leader>lK", vim.lsp.buf.hover, opts)
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>lrs", ":LspRestart<CR>", opts)
 
-				if (vim.version().minor > 9) and client.server_capabilities.inlayHintProvider then
-					vim.lsp.inlay_hint(bufnr, true)
-				end
 			end
 		})
 
