@@ -1,28 +1,48 @@
 return {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+	"lukas-reineke/indent-blankline.nvim",
+	event = { "BufReadPre", "BufNewFile" },
+	main = "ibl",
+	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	opts = {
-		space_char_blankline = " ",
-		show_current_context = true,
-		-- show_current_context_start = true, -- uncomment for underline under functions
-		show_trailing_blankline_indent = false,
-		-- default : {'class', 'function', 'method'}
-		context_patterns = {
-			"class",
-			"function",
-			"method",
-			"^if",
-			"^while",
-			"^for",
-			"^object",
-			"^table",
-			"^type",
-			"^import",
-			"block",
-			"arguments"
+		indent = {
+			tab_char = '▎',
 		},
-		-- disabled now for performance hit.
-		use_treesitter = true
-	}
+		scope = {
+			highlight = {"StorageClass"},
+			show_start = false,
+			include = {
+				node_type ={
+					['*'] = {
+						-- "block",
+						"class", -- find names by doing InspectTree command!
+						"function",
+						"method",
+						"^if",
+						"^while",
+						"^for",
+						"^object",
+						"^table",
+						"^type",
+						"field",
+						"^import",
+						"arguments",
+						"return_statement",
+						"function_declaration"
+					}
+				}
+			}
+		}
+	},
+	config = function (_, opts)
+		local indent_blankline = require("ibl")
+		local colors = require("dracula").colors()
+		vim.api.nvim_set_hl(0, "IndentBlankLine", {fg = colors.cyan})
+		vim.api.nvim_set_hl(0, "ScopeBlankLine", {fg = colors.pink})
+		opts.indent.highlight = {"IndentBlankLine"}
+		opts.scope.highlight = {"ScopeBlankLine"}
+		indent_blankline.setup(opts)
+
+		local hooks = require("ibl.hooks")
+		hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+	end
 }

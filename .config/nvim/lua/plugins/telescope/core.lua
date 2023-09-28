@@ -37,7 +37,9 @@ return {
 				},
 				file_browser = {
 					hijack_netrw = true,
-					theme = "ivy"
+					theme = "ivy",
+					grouped = true,
+					auto_depth = true
 				},
 				lazy = {
 					-- Optional theme (the extension doesn't set a default theme)
