@@ -1,4 +1,7 @@
 local keymap = vim.keymap
+keymap.set('', 'J', "<C-d>zz")
+keymap.set('', 'K', "<C-u>zz")
+
 keymap.set('i', "<C-L>", "<right>")
 keymap.set('i', "<C-H>", "<left>")
 keymap.set('i', "<C-J>", "<down>")

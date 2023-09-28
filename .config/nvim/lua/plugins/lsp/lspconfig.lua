@@ -68,7 +68,7 @@ return {
 
 				if server_capabilities.hoverProvider then
 					opts.desc = "Show documentation for what is under cursor"
-					keymap.set("n", "K", vim.lsp.buf.hover, opts)
+					keymap.set("n", "<leader>lK", vim.lsp.buf.hover, opts)
 				end
 
 				if server_capabilities.signatureHelpProvider then
