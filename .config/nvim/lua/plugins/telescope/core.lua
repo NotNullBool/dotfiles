@@ -32,6 +32,9 @@ return {
 				},
 			},
 			extensions = {
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown(),
+				},
 				file_browser = {
 					hijack_netrw = true,
 					theme = "ivy"
@@ -42,7 +45,7 @@ return {
 					-- Whether or not to show the icon in the first column
 					show_icon = true,
 					-- Mappings for the actions
-					mappings = {
+				mappings = {
 						open_in_browser = "<C-o>",
 						open_in_file_browser = "<M-b>",
 						open_in_find_files = "<C-f>",
