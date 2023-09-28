@@ -47,6 +47,7 @@ opt.backup = false
 ---@diagnostic disable-next-line: assign-type-mismatch
 opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 opt.undofile = true
+opt.splitright = true
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	command = ":silent! lua vim.highlight.on_yank({timeout=250})"
