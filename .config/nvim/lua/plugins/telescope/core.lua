@@ -11,6 +11,7 @@ return {
 		"nvim-telescope/telescope-ui-select.nvim",
 		"nvim-telescope/telescope-file-browser.nvim",
 		"nvim-telescope/telescope-hop.nvim",
+		{ "ahmedkhalf/project.nvim", main = "project_nvim", opts = {} },
 	},
 	config = function()
 		local builtin = require("telescope.builtin")
@@ -68,6 +69,12 @@ return {
 			},
 		})
 
+					function _ADD_CURR_DIR_TO_PROJECTS()
+						local historyfile = require("project_nvim.utils.path").historyfile
+						local curr_directory = vim.fn.expand( "%:p:h" )
+						vim.cmd("!echo " .. curr_directory .. " >> " .. historyfile)
+					end
+					vim.cmd("command! ProjectAddManually lua _ADD_CURR_DIR_TO_PROJECTS()")
 					local curdir = "plugins.telescope."
 					require(curdir.."highlights").setup()
 					telescope.load_extension("fzf")
@@ -76,6 +83,7 @@ return {
 					telescope.load_extension("undo")
 					telescope.load_extension("ui-select")
 					telescope.load_extension("file_browser")
+					telescope.load_extension("projects")
 					local keymap = vim.keymap
 					keymap.set('n', "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd" })
 					keymap.set('n', "<leader>fg", builtin.live_grep, { desc = "Find string in cwd" })
@@ -86,5 +94,7 @@ return {
 					keymap.set('n', "<leader>ft", "<cmd>Telescope aerial<cr>", { desc = "Fuzzy find functions in file" })
 					keymap.set('n', "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo telescope" })
 					keymap.set('n', "<leader>e", "<cmd>Telescope file_browser<cr>", { desc = "Open Telescope file broswer" })
+					keymap.set('n', "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Open Telescope projects" })
+					keymap.set('n', "<leader>fap", "<cmd>ProjectAddManually<cr>", { desc = "Add current directory to projects" })
 				end
 			}

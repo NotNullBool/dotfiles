@@ -10,6 +10,7 @@ return {
 		scope = {
 			highlight = {"StorageClass"},
 			show_start = false,
+			show_end = false,
 			include = {
 				node_type ={
 					['*'] = {
