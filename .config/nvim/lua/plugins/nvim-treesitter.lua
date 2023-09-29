@@ -2,14 +2,26 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
-    config = function ()
-    	local treesitter = require("nvim-treesitter.configs")
-
-    	treesitter.setup({ --enable syntax highlighting
-    		indent = {
-    			enable = true
+    main = "nvim-treesitter.configs",
+    dependencies = {
+		{
+			"RRethy/nvim-treesitter-endwise",
+			event = "InsertEnter",
+			ft = {"lua"},
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter"
 			},
-			highlight = { enable = true },
-		})
-	end,
+		}
+	},
+	opts = {
+		--enable syntax highlighting
+		indent = {
+			enable = true
+		},
+		highlight = { enable = true },
+		incremental_selection = {enable = true},
+		endwise = {
+			enable = true
+		}
+	},
 }
