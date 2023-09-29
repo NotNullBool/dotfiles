@@ -1,3 +1,4 @@
+
 ---@diagnostic disable: missing-fields
 return{
 	"hrsh7th/nvim-cmp",
@@ -11,6 +12,7 @@ return{
 		"hrsh7th/cmp-nvim-lua",
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"rafamadriz/friendly-snippets", -- some default snippets
+		"pixldev/bevy-snippets",
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 	},
 	config = function()
@@ -34,14 +36,15 @@ return{
 
 		cmp.setup({
 			enabled = function()
-				local context = require("cmp.config.context")
-
-				if vim.api.nvim_get_mode().mode == 'c' then
-					return true
-				else
-					return not context.in_treesitter_capture("comment")
-						and not context.in_syntax_group("Comment")
-				end
+				return true
+				-- local context = require("cmp.config.context")
+				--
+				-- if vim.api.nvim_get_mode().mode == 'c' then
+				-- 	return true
+				-- else
+				-- 	return not context.in_treesitter_capture("comment")
+				-- 		and not context.in_syntax_group("Comment")
+				-- end
 			end,
 			completion = {
 				completeopt = "menu,menuone,preview,noselect",
@@ -78,8 +81,8 @@ return{
 		cmp.setup.filetype('gitcommit', {
 			sources = cmp.config.sources({
 				{ name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-			}, {
-				{ name = 'buffer' },
+				}, {
+					{ name = 'buffer' },
 			})
 		})
 
