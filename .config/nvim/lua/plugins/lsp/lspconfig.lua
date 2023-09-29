@@ -103,10 +103,10 @@ return {
 			end
 		})
 
-		--used to enable auto complion
+		--- Used to enable auto complete
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
-		-- Change the Diagnostic symbols in the sign column (gutter)    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
+		--- Change the Diagnostic symbols in the sign column (gutter)
 		local signs = { Error = " ", Warn = " ", Hint = "󱐋 ", Info = " " }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
@@ -116,7 +116,7 @@ return {
 		mason.setup()
 
 		mason_lspconfig.setup({
-			-- auto-install configured servers (with lspconfig)
+			--- auto-install configured servers (with lspconfig)
 			automatic_installation = true,
 		})
 
