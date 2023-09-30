@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	version = false,
@@ -35,6 +36,8 @@ return {
 
 						["ac"] = { query = "@class.outer", desc = "Select outer part of an class region (TSTextObject)" },
 						["ic"] = { query = "@class.inner", desc = "Select inner part of an class region (TSTextObject)" },
+
+						["at"] = { query = "@comment.outer", desc = "Select outer part of an comment region (TSTextObject)" },
 					},
 					include_surrouding_whitespace = true,
 				},

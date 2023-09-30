@@ -4,6 +4,8 @@
 export GTK_THEME=Adwaita:dark
 export EDITOR="nvim"
 export VISUAL="nvim"
+export steamdirglobal="$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/"
+export steamlogin="410076825"
 export PATH=/var/lib/flatpak/exports/bin/:$PATH
 export PATH=$HOME/.local/bin/:$PATH
 export PATH=/snap/bin/:$PATH
