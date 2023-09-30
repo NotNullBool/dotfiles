@@ -10,6 +10,8 @@ if [ $(tty) == "/dev/tty1" ]
 then
 	export GTK_THEME=Adwaita:dark
 	export XDG_SESSION_TYPE="x11"
+	xrandr --setprovideroutputsource modesetting NVIDIA-0
+	xrandr --auto
 	. /etc/X11/Xsession
 	exec xmonad
 fi

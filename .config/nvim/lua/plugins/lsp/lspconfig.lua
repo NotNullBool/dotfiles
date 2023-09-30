@@ -131,6 +131,30 @@ return {
 			["rust_analyzer"] = function ()
 				vim.g.rust_recommended_style = 0 -- neovim issue(#24075) soft tab stop breaks backspace on inline virtual text
 				lspconfig["rust_analyzer"].setup({
+					settings = {
+						["rust-analyzer"] = {
+							cargo = {
+								allFeatures = true,
+								loadOutDirsFromCheck = true,
+								runBuildScripts = true,
+							},
+							check = "clippy",
+							-- Add clippy lints for Rust.
+							checkOnSave = {
+								allFeatures = true,
+								command = "clippy",
+								extraArgs = { "--no-deps" },
+							},
+							procMacro = {
+								enable = true,
+								ignored = {
+									["async-trait"] = { "async_trait" },
+									["napi-derive"] = { "napi" },
+									["async-recursion"] = { "async_recursion" },
+								},
+							},
+						}
+					},
 					capabilities = capabilities,
 				})
 			end,
