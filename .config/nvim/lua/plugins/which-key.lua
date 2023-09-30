@@ -7,4 +7,9 @@ return {
 	end,
 	opts = {
 	},
+	config = function (_,opts)
+		local actions = require("which-key.plugins.registers").actions
+		table.insert(actions, { trigger = '"_', mode = "n"})
+		require("which-key").setup(opts)
+	end
 }

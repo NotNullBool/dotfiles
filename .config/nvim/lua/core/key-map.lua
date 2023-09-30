@@ -18,7 +18,7 @@ keymap.set({'v','n'}, "<leader>r", "r",{ desc = "Regular replace"})
 keymap.set({'v','n'}, "<leader>x", "x",{ desc = "Regular char delete"})
 keymap.set({'v','n'}, "r", "\"_r",{ desc = "Void replace"})
 keymap.set({'v','n'}, "x", "\"_x",{ desc = "Void char delete"})
-keymap.set({'v','n'}, "<leader>d", "\"_d",{ desc = "Void delete", noremap = false})
+keymap.set({'v','n'}, "<leader>d", "\"_d",{ desc = "Void delete", noremap = true})
 keymap.set('', '<leader>c', "\"_c", {desc = "Void change", noremap = false})
 keymap.set('', '<leader>C', "\"_C", {desc = "Void change", noremap = false})
 
