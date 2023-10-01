@@ -8,7 +8,7 @@
 
 if [ $(tty) == "/dev/tty1" ]
 then
-	export GTK_THEME=Adwaita:dark
+	export GTK_THEME="Dracula"
 	export XDG_SESSION_TYPE="x11"
 	xrandr --setprovideroutputsource modesetting NVIDIA-0
 	xrandr --auto
