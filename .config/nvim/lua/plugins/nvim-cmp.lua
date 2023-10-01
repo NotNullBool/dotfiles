@@ -30,8 +30,8 @@ return{
 			["<Tab>"] = cmp.mapping(function(fallback)
 				-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
 				-- they way you will only jump inside the snippet region
-				if luasnip.expand_or_jumpable() then
-					luasnip.expand_or_jump()
+				if luasnip.jumpable(1) then
+					luasnip.jump(1)
 				else
 					fallback()
 				end
@@ -78,7 +78,7 @@ return{
 					-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 				end,
 			},
-			mapping = cmp.mapping.preset.insert(cmp_mappings),
+			mapping = cmp_mappings,
 			sources = cmp.config.sources({
 				{ name = 'nvim_lsp' },
 				{name = "omni", option = {disable_omnifuncs = {"v:lua.vim.lsp.omnifunc"}}},
