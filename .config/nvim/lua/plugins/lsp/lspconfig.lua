@@ -74,7 +74,7 @@ return {
 				if server_capabilities.signatureHelpProvider then
 					opts.desc = "Show signature help"
 					keymap.set('n', "gK", vim.lsp.buf.signature_help, opts)
-					keymap.set('i', "<C-k>", vim.lsp.buf.signature_help, opts)
+					keymap.set('i', "<C-K>", vim.lsp.buf.signature_help, opts)
 				end
 
 				if (vim.version().minor > 9) and server_capabilities.inlayHintProvider then
