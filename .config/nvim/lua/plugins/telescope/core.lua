@@ -71,7 +71,7 @@ return {
 		keymap.set('n', "<leader>fh", builtin.help_tags, { desc = "Find help tags (Telescope)" })
 		keymap.set('n', "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd (Telescope)" })
 		keymap.set('n', "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files (Telescope)" })
-		keymap.set('n', "<leader>ft", "<cmd>Telescope aerial<cr>", { desc = "Fuzzy find functions in file (Aerial-Telescope)" })
+		keymap.set('n', "<leader>fm", "<cmd>Telescope aerial<cr>", { desc = "Fuzzy find method in file (Aerial-Telescope)" })
 		keymap.set('n', "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo (Undo-Telescope)" })
 		keymap.set('n', "<leader>e", "<cmd>Telescope file_browser<cr>", { desc = "Open (File-Browser-Telescope)" })
 		keymap.set('n', "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Open (Projects-Telescope)" })
