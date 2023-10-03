@@ -56,7 +56,7 @@ return {
 			vim.cmd("!echo " .. curr_directory .. " >> " .. historyfile)
 		end
 		vim.cmd("command! ProjectAddManually lua _ADD_CURR_DIR_TO_PROJECTS()")
-		local curdir = "plugins.telescope."
+		local curdir = "plugins.telescope_nvim."
 		require(curdir.."highlights").setup()
 		telescope.load_extension("fzf")
 		telescope.load_extension("aerial")
@@ -72,8 +72,8 @@ return {
 		keymap.set('n', "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd (Telescope)" })
 		keymap.set('n', "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files (Telescope)" })
 		keymap.set('n', "<leader>fm", "<cmd>Telescope aerial<cr>", { desc = "Fuzzy find method in file (Aerial-Telescope)" })
-		keymap.set('n', "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo (Undo-Telescope)" })
-		keymap.set('n', "<leader>e", "<cmd>Telescope file_browser<cr>", { desc = "Open (File-Browser-Telescope)" })
+		keymap.set('n', "<leader>fu", "<cmd>Telescope undo<cr>", { desc = "Undo (Undo-Telescope)" })
+		keymap.set('n', "<leader>fe", "<cmd>Telescope file_browser<cr>", { desc = "Open (File-Browser-Telescope)" })
 		keymap.set('n', "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Open (Projects-Telescope)" })
 		keymap.set('n', "<leader>fap", "<cmd>ProjectAddManually<cr>", { desc = "Add current directory to (Projects-Telescope)" })
 	end

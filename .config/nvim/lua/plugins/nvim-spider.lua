@@ -8,4 +8,7 @@ return {
 		{'b', ":lua require('spider').motion('b')<cr>", mode = {'n', 'o', 'x'}, desc = "(Spider) Backward a word", silent = true},
 		{"ge", ":lua require('spider').motion('ge')<cr>", mode = {'n', 'o', 'x'}, desc = "(Spider) Backward to end of word", silent = true},
 	},
+	opts = {
+		skipInsignificantPunctuation = false
+	}
 }
