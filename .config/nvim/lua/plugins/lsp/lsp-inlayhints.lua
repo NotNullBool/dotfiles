@@ -1,6 +1,7 @@
 -- once 0.10 is updated inlay hints are already avaliable
 return {
 	"lvimuser/lsp-inlayhints.nvim",
+	event = "VeryLazy",
 	enabled = function ()
 		if vim.version().minor > 9 then
 			return false

@@ -4,7 +4,6 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	cmd = { "Mason" },
 	dependencies = {
-		"nvim-telescope/telescope.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",

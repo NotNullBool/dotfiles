@@ -5,8 +5,8 @@ keymap.set('i', "<C-J>", "<down>")
 keymap.set('i', "<C-K>", "<up>")
 keymap.set('n', "<leader>a", "mzJ`z", {desc = "Append next line", silent = true})
 
-keymap.set('n', 'n', "nzzzv")
-keymap.set('n', 'N', "Nzzzv")
+keymap.set('n', 'n', "nzzzv", {silent = true})
+keymap.set('n', 'N', "Nzzzv", {silent = true})
 
 keymap.set('n', '<C-j>', ":m .+1<CR> ==",{ desc = "Line down", silent = true})
 keymap.set('n', '<C-k>', ":m .-2<CR> ==",{ desc = "Line up", silent = true})

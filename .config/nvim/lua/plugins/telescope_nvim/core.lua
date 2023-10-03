@@ -6,8 +6,9 @@ return {{
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
 	},
+	cmd = "Telescope",
 	keys = {
-		{"<leader>ff", "<cmd>Telscope find_files<CR>", desc = "Fuzzy find files in cwd (Telescope)"},
+		{"<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Fuzzy find files in cwd (Telescope)"},
 		{"<leader>fg", "<cmd>Telescope live_grep<CR>",  desc = "Find string in cwd (Telescope)"},
 		{"<leader>fb", "<cmd>Telescope buffers<CR>",  desc = "Find buffer (Telescope)"},
 		{"<leader>fh", "<cmd>Telescope help_tags<CR>",  desc = "Find help tags (Telescope)"},
