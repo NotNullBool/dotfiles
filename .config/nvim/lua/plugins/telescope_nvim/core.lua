@@ -1,22 +1,22 @@
-return {
+return {{
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
-		{ "stevearc/aerial.nvim", config = true },
-		"debugloop/telescope-undo.nvim",
-		"nvim-telescope/telescope-ui-select.nvim",
-		"nvim-telescope/telescope-file-browser.nvim",
-		{ "ahmedkhalf/project.nvim", main = "project_nvim", opts = {} },
+	},
+	keys = {
+		{"<leader>ff", "<cmd>Telscope find_files<CR>", desc = "Fuzzy find files in cwd (Telescope)"},
+		{"<leader>fg", "<cmd>Telescope live_grep<CR>",  desc = "Find string in cwd (Telescope)"},
+		{"<leader>fb", "<cmd>Telescope buffers<CR>",  desc = "Find buffer (Telescope)"},
+		{"<leader>fh", "<cmd>Telescope help_tags<CR>",  desc = "Find help tags (Telescope)"},
+		{"<leader>fc", "<cmd>Telescope grep_string<cr>",  desc = "Find string under cursor in cwd (Telescope)"},
+		{"<leader>fr", "<cmd>Telescope oldfiles<cr>",  desc = "Fuzzy find recent files (Telescope)" }
 	},
 	config = function()
-		local builtin = require("telescope.builtin")
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
-		vim.g.loaded_netrw = 1
-		vim.g.loaded_netrwPlugin = 1
 
 		telescope.setup({
 			defaults = {
@@ -50,31 +50,82 @@ return {
 			},
 		})
 
-		function _ADD_CURR_DIR_TO_PROJECTS()
-			local historyfile = require("project_nvim.utils.path").historyfile
-			local curr_directory = vim.fn.expand( "%:p:h" )
-			vim.cmd("!echo " .. curr_directory .. " >> " .. historyfile)
-		end
-		vim.cmd("command! ProjectAddManually lua _ADD_CURR_DIR_TO_PROJECTS()")
-		local curdir = "plugins.telescope_nvim."
-		require(curdir.."highlights").setup()
+		local currentDirectory = "plugins.telescope_nvim."
+		require(currentDirectory.."highlights").setup()
 		telescope.load_extension("fzf")
-		telescope.load_extension("aerial")
-		telescope.load_extension("undo")
-		telescope.load_extension("ui-select")
-		telescope.load_extension("file_browser")
-		telescope.load_extension("projects")
-		local keymap = vim.keymap
-		keymap.set('n', "<leader>ff", builtin.find_files, { desc = "Fuzzy find files in cwd (Telescope)" })
-		keymap.set('n', "<leader>fg", builtin.live_grep, { desc = "Find string in cwd (Telescope)" })
-		keymap.set('n', "<leader>fb", builtin.buffers, { desc = "Find buffer (Telescope)" })
-		keymap.set('n', "<leader>fh", builtin.help_tags, { desc = "Find help tags (Telescope)" })
-		keymap.set('n', "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd (Telescope)" })
-		keymap.set('n', "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files (Telescope)" })
-		keymap.set('n', "<leader>fm", "<cmd>Telescope aerial<cr>", { desc = "Fuzzy find method in file (Aerial-Telescope)" })
-		keymap.set('n', "<leader>fu", "<cmd>Telescope undo<cr>", { desc = "Undo (Undo-Telescope)" })
-		keymap.set('n', "<leader>fe", "<cmd>Telescope file_browser<cr>", { desc = "Open (File-Browser-Telescope)" })
-		keymap.set('n', "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Open (Projects-Telescope)" })
-		keymap.set('n', "<leader>fap", "<cmd>ProjectAddManually<cr>", { desc = "Add current directory to (Projects-Telescope)" })
 	end
+},{
+		"nvim-telescope/telescope-ui-select.nvim",
+		lazy = true,
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		init = function ()
+			vim.ui.select = function(...)
+				require("lazy").load({plugins = {"telescope-ui-select.nvim"}})
+				return vim.ui.select(...)
+			end
+		end,
+		config = function()
+			require("telescope").load_extension("ui-select")
+		end
+},{
+		"debugloop/telescope-undo.nvim",
+		keys = {{"<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo (Undo-Telescope)" }},
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		config = function ()
+			require('telescope').load_extension("undo")
+		end
+},{
+
+		"stevearc/aerial.nvim",
+		keys = {{"<leader>fm", "<cmd>Telescope aerial<cr>", desc = "Find method (Aerial-Telescope)" }},
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		config = function ()
+			require("aerial").setup()
+			require("telescope").load_extension("aerial")
+		end
+},{
+		"nvim-telescope/telescope-file-browser.nvim",
+		keys = {{"<leader>fe", "<cmd>Telescope file_browser<cr>", desc = "Open (File-Browser-Telescope)"}},
+		cmd = "Telescope file_browser",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		init = function()
+			if vim.fn.argc() == 1 then
+---@diagnostic disable-next-line: param-type-mismatch
+				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+				if stat and stat.type == "directory" then
+					require("lazy").load({plugins = {"telescope-file-browser.nvim"}})
+				end
+			end
+		end,
+		config = function()
+			vim.g.loaded_netrw = 1
+			vim.g.loaded_netrwPlugin = 1
+			require("telescope").load_extension("file_browser")
+		end
+},{
+		"ahmedkhalf/project.nvim",
+		main = "project_nvim",
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		keys = {
+			{"<leader>fp",function ()
+				if not vim.g.projects_loaded then -- a short delay so hopefully the history file will be loaded
+					vim.cmd("sleep 50ms")
+					vim.g.projects_loaded = true
+				end
+				vim.cmd("Telescope projects")
+			end, desc = "Open (Projects-Telescope)"},
+			{"<leader>fap", "<cmd>ProjectAddManually<cr>", desc = "Add current directory to (Projects-Telescope)"}
+		},
+		cmd = { "ProjectAddManually", "Telescope projects" },
+		config = function()
+			require("project_nvim").setup()
+			require("telescope").load_extension("projects")
+			function _ADD_CURR_DIR_TO_PROJECTS()
+				local historyfile = require("project_nvim.utils.path").historyfile
+				local curr_directory = vim.fn.expand( "%:p:h" )
+				vim.cmd("!echo " .. curr_directory .. " >> " .. historyfile)
+			end
+			vim.cmd("command! ProjectAddManually lua _ADD_CURR_DIR_TO_PROJECTS()")
+		end
+}
 }
