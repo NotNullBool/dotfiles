@@ -14,7 +14,7 @@ return {
 		"]b",
 		"]f",
 		"]c",
-		"]n",
+		"]N",
 
 		"[=",
 		"[:",
@@ -23,7 +23,9 @@ return {
 		"[b",
 		"[f",
 		"[c",
-		"[n",
+		"[N",
+		"<leader>on",
+		"<leader>op",
 		{"a=", mode = {'o','x'}},
 		{"i=", mode = {'o','x'}},
 		{"i:", mode = {'o','x'}},
@@ -38,7 +40,7 @@ return {
 		{"if", mode = {'o','x'}},
 		{"ac", mode = {'o','x'}},
 		{"ic", mode = {'o','x'}},
-		{"an", mode = {'o','x'}},
+		{"aN", mode = {'o','x'}},
 	},
 	opts = {
 		textobjects = {
@@ -71,7 +73,7 @@ return {
 					["ac"] = { query = "@class.outer", desc = "Select outer part of an class region (TSTextObject)" },
 					["ic"] = { query = "@class.inner", desc = "Select inner part of an class region (TSTextObject)" },
 
-					["an"] = { query = "@comment.outer", desc = "Select outer part of an notation region (TSTextObject)" },
+					["aN"] = { query = "@comment.outer", desc = "Select outer part of an notation region (TSTextObject)" },
 				},
 				include_surrouding_whitespace = true,
 			},
@@ -94,7 +96,7 @@ return {
 					["]b"] = "@block.*",
 					["]f"] = "@function.*",
 					["]c"] = "@class.*",
-					["]n"] = "@comment.*",
+					["]N"] = "@comment.*",
 				},
 				goto_previous = {
 					["[="] = "@assignment.*",
@@ -104,7 +106,7 @@ return {
 					["[b"] = "@block.*",
 					["[f"] = "@function.*",
 					["[c"] = "@class.*",
-					["[n"] = "@comment.*",
+					["[N"] = "@comment.*",
 				}
 			}
 		},

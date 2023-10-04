@@ -1,10 +1,6 @@
 return {
 	"chrisgrieser/nvim-various-textobjs",
 	keys ={
-		{"ii", "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>", mode = { "o", "x" }},
-		{"ai", "<cmd>lua require('various-textobjs').indentation('outer', 'inner')<CR>", mode = { "o", "x" }},
-		{"iI", "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>", mode = { "o", "x" }},
-		{"aI", "<cmd>lua require('various-textobjs').indentation('outer', 'outer')<CR>", mode = { "o", "x" }},
 
 		{"R", "<cmd>lua require('various-textobjs').restOfIndentation()<CR>", mode = { "o", "x" }},
 
