@@ -1,8 +1,8 @@
 return{
-	'nvim-lualine/lualine.nvim',
+	"nvim-lualine/lualine.nvim",
 	dependencies = {
-		'nvim-tree/nvim-web-devicons',
-		'linrongbin16/lsp-progress.nvim',
+		"nvim-tree/nvim-web-devicons",
+		"linrongbin16/lsp-progress.nvim",
 	},
 	config = function()
 		local lualine = require("lualine")
@@ -15,7 +15,7 @@ return{
 			},
 			sections = {
 				lualine_x = {
-					"require('lsp-progress').progress()",
+					require('lsp-progress').progress(),
 					{
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
