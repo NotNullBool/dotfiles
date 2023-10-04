@@ -1,30 +1,14 @@
 ---@diagnostic disable: undefined-doc-name, unused-local, undefined-field
 return {
 	"mfussenegger/nvim-dap",
-	event = "VeryLazy",
 	dependencies = {
-		"jay-babu/mason-nvim-dap.nvim",
+		{ "jay-babu/mason-nvim-dap.nvim", opts = {
+			automatic_installation = true,
+			handlers = { function (config) require("mason-nvim-dap").default_setup(config) end, }
+		} },
 		"williamboman/mason.nvim",
 		"nvim-treesitter/nvim-treesitter",
-		"theHamsta/nvim-dap-virtual-text",
-		"rcarriga/nvim-dap-ui",
-	},
-	config = function ()
-		local mason_dap = require("mason-nvim-dap")
-		local dap, dapui = require("dap"), require("dapui")
-		dapui.setup()
-		dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
-		dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
-		mason_dap.setup({
-			automatic_installation = true,
-			handlers = {
-				function (config)
-					mason_dap.default_setup(config)
-				end,
-			}
-		})
-
-		require("nvim-dap-virtual-text").setup {
+		{ "theHamsta/nvim-dap-virtual-text", opts ={
 			enabled = true,                        -- enable this plugin (the default)
 			enabled_commands = true,               -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
 			highlight_changed_variables = true,    -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
@@ -56,6 +40,31 @@ return {
 			virt_lines = false,                    -- show virtual lines instead of virtual text (will flicker!)
 			virt_text_win_col = nil                -- position the virtual text at a fixed window column (starting from the first text column) ,
 			-- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
-		}
-	end
+		}},
+		{ "rcarriga/nvim-dap-ui", config = function ()
+			local dap, dapui = require("dap"), require("dapui")
+			dapui.setup()
+			dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+			dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
+		end}
+	},
+	cmd = {
+		"DapContinue",
+		"DapInstall",
+		"DapLoadLaunchJSON",
+		"DapRestartFrame",
+		"DapSetLogLevel",
+		"DapShowLog",
+		"DapStepInto",
+		"DapStepOut",
+		"DapStepOver",
+		"DapTerminate",
+		"DapToggleBreakpoint",
+		"DapToggleRepl",
+		"DapUninstall",
+		"DapVirtualTextDisable",
+		"DapVirtualTextEnable",
+		"DapVirtualTextForceRefresh",
+		"DapVirtualTextToggle",
+	},
 }

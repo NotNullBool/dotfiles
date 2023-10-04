@@ -1,20 +1,13 @@
 ---@diagnostic disable: undefined-field
-return {
+return {{
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
-	cmd = { "Mason" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		{ "antosha417/nvim-lsp-file-operations", config = true }, -- update nvim-tree names in imports	
-		{ "folke/neodev.nvim", opts = {} },
+		{ "williamboman/mason-lspconfig.nvim", dependencies = "williamboman/mason.nvim", opts = {automatic_installation = true,}}
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
-
-		local mason = require("mason")
-		local mason_lspconfig = require("mason-lspconfig")
 
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local keymap = vim.keymap -- for concisenesss
@@ -112,14 +105,8 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		mason.setup()
 
-		mason_lspconfig.setup({
-			--- auto-install configured servers (with lspconfig)
-			automatic_installation = true,
-		})
-
-		mason_lspconfig.setup_handlers({
+		require("mason-lspconfig").setup_handlers({
 			function(server_name)
 				lspconfig[server_name].setup({
 					capabilities = capabilities,
@@ -180,4 +167,13 @@ return {
 
 		})
 	end,
-}
+}, {
+		"folke/neodev.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		ft = {"lua"},
+		config = true
+},{
+		"williamboman/mason.nvim",
+		cmd = "Mason",
+		config = true
+}}
