@@ -1,3 +1,5 @@
 return {
-	-- "andweeb/presence.nvim"
+	"andweeb/presence.nvim",
+	event = "UIEnter",
+	-- opts = {log_level = "debug"}
 }
