@@ -47,6 +47,9 @@ keymap.set('n', "<leader><S-TAB>", ":bp<CR>", { silent = true })
 keymap.set('c', "<C-k>", "<C-p>")
 
 keymap.set('c', "<C-j>", "<C-n>")
+
+keymap.set('n', '0', ":silent! call search('^.')<CR>^", {silent = true})
+
 keymap.set('c', "<CR>", function ()
 	if vim.fn.pumvisible() == 1 then
 		return "<C-y>"
