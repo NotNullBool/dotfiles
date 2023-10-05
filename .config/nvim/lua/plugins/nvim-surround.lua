@@ -1,7 +1,7 @@
 return {
 	"NotNullBool/nvim-surround",
 	keys = { "ys", "ds", "cs" },
-	version = "*",
+	-- version = "*",
 	opts = {
 		highlight = {duration = 0}
 	},
