@@ -1,11 +1,9 @@
-return {
+return {{
 	"NotNullBool/nvim-surround",
+	lazy = false,
 	keys = { "ys", "ds", "cs" },
 	-- version = "*",
 	opts = {
 		highlight = {duration = 0}
 	},
-	config = function (_,opts)
-		require("nvim-surround").setup(opts)
-	end
-}
+},{ "XXiaoA/ns-textobject.nvim", dependencies = {"NotNullBool/nvim-surround"}, opts = {}}}
