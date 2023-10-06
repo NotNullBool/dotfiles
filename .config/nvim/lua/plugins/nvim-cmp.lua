@@ -10,7 +10,7 @@ return{{
 		"L3MON4D3/LuaSnip", -- snippet engine
 		"hrsh7th/cmp-nvim-lua",
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
-		"rafamadriz/friendly-snippets", -- some default snippets
+		{ "rafamadriz/friendly-snippets", config = function () require("luasnip.loaders.from_vscode").lazy_load() end}, -- some default snippets
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 	},
 	config = function()
@@ -20,7 +20,6 @@ return{{
 		local lspkind = require("lspkind")
 
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-		require("luasnip.loaders.from_vscode").lazy_load()
 
 		local cmp_mappings = {
 
