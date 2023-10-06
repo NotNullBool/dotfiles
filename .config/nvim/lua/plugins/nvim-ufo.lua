@@ -38,7 +38,7 @@ return {
 			return {'treesitter', 'indent'}
 		end
 	},
-	init = function()
+	config = function(_, opts)
 		vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 		vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 		vim.o.foldlevelstart = 99
@@ -54,5 +54,7 @@ return {
 			group = myGroup,
 			command = "silent! loadview",
 		})
+
+		require("ufo").setup(opts)
 	end
 }
