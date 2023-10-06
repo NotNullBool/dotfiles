@@ -1,6 +1,5 @@
-
 ---@diagnostic disable: missing-fields
-return{
+return{{
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
@@ -12,7 +11,6 @@ return{
 		"hrsh7th/cmp-nvim-lua",
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"rafamadriz/friendly-snippets", -- some default snippets
-		"pixldev/bevy-snippets",
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 	},
 	config = function()
@@ -115,4 +113,6 @@ return{
 		})
 
 	end
-}
+},{ "pixldev/bevy-snippets", event = "InsertEnter *.rs", dependencies = {"hrsh7th/nvim-cmp"}, config = function ()
+		require("luasnip.loaders.from_vscode").lazy_load()
+end}}
