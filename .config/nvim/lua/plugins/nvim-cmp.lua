@@ -112,6 +112,6 @@ return{{
 		})
 
 	end
-},{ "pixldev/bevy-snippets", event = "InsertEnter *.rs", dependencies = {"hrsh7th/nvim-cmp"}, config = function ()
+},{ "pixldev/bevy-snippets", event = "InsertEnter *.rs", config = function ()
 		require("luasnip.loaders.from_vscode").lazy_load()
 end}}
