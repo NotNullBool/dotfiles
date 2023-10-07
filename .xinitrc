@@ -8,7 +8,9 @@
 
 if [ $(tty) == "/dev/tty1" ]
 then
+	xsetroot -cursor_name left_ptr
 	export GTK_THEME="Dracula"
+	export GTK_CURSOR_THEME="Dracula-cursors"
 	export XDG_SESSION_TYPE="x11"
 	xrandr --setprovideroutputsource modesetting NVIDIA-0
 	xrandr --auto
