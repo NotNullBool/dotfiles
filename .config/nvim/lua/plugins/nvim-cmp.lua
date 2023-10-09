@@ -24,7 +24,7 @@ return{{
 		local cmp_mappings = {
 
 
-			["<Tab>"] = cmp.mapping(function(fallback)
+			["<C-f>"] = cmp.mapping(function(fallback)
 				-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
 				-- they way you will only jump inside the snippet region
 				if luasnip.jumpable(1) then
@@ -34,7 +34,7 @@ return{{
 				end
 			end, { "i", "s" }),
 
-			["<S-Tab>"] = cmp.mapping(function(fallback)
+			["<C-b>"] = cmp.mapping(function(fallback)
 				if luasnip.jumpable(-1) then
 					luasnip.jump(-1)
 				else
@@ -44,8 +44,8 @@ return{{
 
 			["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
 			["<C-j>"] = cmp.mapping.select_next_item(),
-			['<C-b>'] = cmp.mapping.scroll_docs(-4),
-			['<C-f>'] = cmp.mapping.scroll_docs(4),
+			-- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+			-- ['<C-f>'] = cmp.mapping.scroll_docs(4),
 			['<C-Space>'] = cmp.mapping.complete(), -- show completion suggestions
 			['<C-e>'] = cmp.mapping.abort(), -- close completion window
 			['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
