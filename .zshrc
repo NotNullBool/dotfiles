@@ -17,7 +17,7 @@ compinit
 # start in tmux
 if [[ -z "$TMUX" ]] && [[ -z "$VSCODE_SHELL_INTEGRATION" ]] && [ $XDG_SESSION_TYPE != "tty" ]; then
         declare session_name="main"
-	tmux attach -t $session_name || exec tmux new -s $session_name
+		 tmux attach -t $session_name || exec tmux new -s $session_name
 fi
 
 source $HOME/.dotfiles/zsh_themes/zsh-syntax-highlighting.sh
