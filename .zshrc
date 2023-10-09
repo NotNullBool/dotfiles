@@ -24,6 +24,12 @@ source $HOME/.dotfiles/zsh_themes/zsh-syntax-highlighting.sh
 for f in $HOME/.dotfiles/zsh_plugins/*; do source $f; done
 source $HOME/.dotfiles/.config/shared_shell_files/shared_config.sh
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+ eval "$(pyenv init --path)"
+fi
+eval "$(pyenv virtualenv-init -)"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
