@@ -50,6 +50,11 @@ keymap.set('c', "<C-j>", "<C-n>")
 
 keymap.set('n', '0', ":silent! call search('^.')<CR>^", {silent = true})
 
+keymap.set('n', '<leader>lz', function ()
+	vim.opt.lazyredraw = not vim.opt.lazyredraw:get()
+	print(string.format("Lazy redraw is: %s", vim.opt.lazyredraw:get()))
+end, {desc= "Toggle lazy redraw."})
+
 keymap.set('c', "<CR>", function ()
 	if vim.fn.pumvisible() == 1 then
 		return "<C-y>"
