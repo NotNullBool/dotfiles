@@ -1,6 +1,5 @@
 return {{
 	"NotNullBool/nvim-surround",
-	lazy = false,
 	keys = { "ys", "ds", "cs" },
 	-- version = "*",
 	opts = {
