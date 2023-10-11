@@ -247,6 +247,7 @@ format = '[$symbol($version-$vm_version)]($style)'
 
 [rlang]
 symbol = "󰟔 "
+format = '[$symbol($version)]($style)'
 
 [red]
 format = '[$symbol($version)]($style)'
