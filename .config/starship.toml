@@ -1,21 +1,31 @@
 format = """$all"""
 right_format = """$os$sudo$time"""
 
+palette = 'dracula'
+[palettes.dracula]
+red = '#ff5555'
+green = '#50fa7b'
+yellow = '#FFFF80'
+orange = '#ffb86c'
+pink = '#FF80BF'
+purple = '#bd93f9'
+cyan = '#80FFEA'
+
 # my config
 [line_break]
 disabled = true
 
 # Dracula theming
 [character]
-error_symbol = "[λ](bold #ff5555)"
-success_symbol = "[λ](bold #50fa7b)"
+# error_symbol = "[λ](bold red)"
+# success_symbol = "[λ](bold green)"
 
 [cmd_duration]
-style = "bold #FFFF80"
+style = "bold yellow"
 format = '[⌛ $duration]($style) '
 
 [git_status]
-style = "bold #ff5555"
+style = "bold red"
 format = '([\[$all_status$ahead_behind\]]($style) )'
 
 
@@ -24,7 +34,7 @@ format = '([\[$all_status$ahead_behind\]]($style) )'
 symbol = "  "
 format = '[$symbol($profile)(\($region\))(\[$duration\])]($style)'
 # Dracula
-style = "bold #ffb86c"
+style = "bold orange"
 
 [bun]
 format = '[$symbol($version)]($style)'
@@ -63,7 +73,7 @@ format = '[$symbol($version)]($style)'
 [directory]
 read_only = " 󰌾"
 # Dracula
-style = "bold #50fa7b"
+style = "bold green"
 
 [docker_context]
 symbol = " "
@@ -96,7 +106,7 @@ format = '[$symbol$account(@$domain)(\($region\))]($style) '
 [git_branch]
 symbol = " "
 # Dracula
-style = "bold #FF80BF"
+style = "bold pink"
 format = '[$symbol$branch]($style) '
 
 [golang]
@@ -128,7 +138,7 @@ format = '[$symbol$branch]($style) '
 [hostname]
 ssh_symbol = " "
 # Dracula
-style = "bold #bd93f9"
+style = "bold purple"
 
 [java]
 symbol = " "
@@ -190,7 +200,7 @@ Android = " "
 Arch = " "
 Artix = " "
 CentOS = " "
-Debian = "[ ](bold #ff5555)"
+Debian = "[ ](bold red)"
 DragonFly = " "
 Emscripten = " "
 EndeavourOS = " "
@@ -287,7 +297,7 @@ disabled = false
 
 [username]
 format = "[$user]($style) "
-style_user = "bold #80FFEA"
+style_user = "bold cyan"
 
 [vagrant]
 format = '[$symbol($version)]($style)'
