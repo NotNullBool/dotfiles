@@ -1,3 +1,5 @@
+format = """$all"""
+right_format = """$os$sudo$time"""
 
 # my config
 [line_break]
@@ -149,6 +151,7 @@ format = '[$symbol($version)]($style)'
 [memory_usage]
 symbol = "󰍛 "
 format = '$symbol[$ram( | $swap)]($style) '
+disabled = false
 
 [meson]
 symbol = "󰔷 "
@@ -177,6 +180,7 @@ format = '[$symbol$cloud(\($project\))]($style)'
 
 [os]
 format = '[$symbol]($style)'
+disabled = false
 
 [os.symbols]
 Alpaquita = " "
@@ -186,7 +190,7 @@ Android = " "
 Arch = " "
 Artix = " "
 CentOS = " "
-Debian = " "
+Debian = "[ ](bold #ff5555)"
 DragonFly = " "
 Emscripten = " "
 EndeavourOS = " "
@@ -278,7 +282,8 @@ format = '[$symbol($version)]($style)'
 format = '[$symbol$workspace]($style)'
 
 [time]
-format = '[$time]($style) '
+format = '🕔 [$time]($style) '
+disabled = false
 
 [username]
 format = "[$user]($style) "
