@@ -11,29 +11,12 @@ pink = '#FF80BF'
 purple = '#bd93f9'
 cyan = '#80FFEA'
 
-# my config
 [line_break]
 disabled = true
 
-# Dracula theming
-[character]
-# error_symbol = "[λ](bold red)"
-# success_symbol = "[λ](bold green)"
-
-[cmd_duration]
-style = "bold yellow"
-format = '[⌛ $duration]($style) '
-
-[git_status]
-style = "bold red"
-format = '([\[$all_status$ahead_behind\]]($style) )'
-
-
-# Nerd fonts default
 [aws]
 symbol = "  "
 format = '[$symbol($profile)(\($region\))(\[$duration\])]($style)'
-# Dracula
 style = "bold orange"
 
 [bun]
@@ -52,6 +35,10 @@ format = '[$symbol($version)]($style)'
 
 [cobol]
 format = '[$symbol($version)]($style)'
+
+[cmd_duration]
+style = "bold yellow"
+format = '[⌛ $duration]($style) '
 
 [conda]
 symbol = " "
@@ -105,9 +92,12 @@ format = '[$symbol$account(@$domain)(\($region\))]($style) '
 
 [git_branch]
 symbol = " "
-# Dracula
 style = "bold pink"
 format = '[$symbol$branch]($style) '
+
+[git_status]
+style = "bold red"
+format = '([\[$all_status$ahead_behind\]]($style) )'
 
 [golang]
 symbol = " "
