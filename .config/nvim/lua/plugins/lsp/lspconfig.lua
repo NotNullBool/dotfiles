@@ -71,6 +71,11 @@ return {{
 
 				if (vim.version().minor > 9) and server_capabilities.inlayHintProvider then
 					vim.lsp.inlay_hint(bufnr, true)
+                    local softtab = vim.bo.softtabstop
+				    if softtab ~= 0 then
+				        vim.bo.tabstop = softtab
+				        vim.bo.softtabstop = 0
+				    end
 				end
 
 				opts.desc = "Show workspace diagnostics"
