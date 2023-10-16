@@ -115,7 +115,7 @@ return {{
 
 			-- example of how to overide the default setup
 			["rust_analyzer"] = function ()
-				vim.g.rust_recommended_style = 0 -- neovim issue(#24075) soft tab stop breaks backspace on inline virtual text
+				-- vim.g.rust_recommended_style = 0 -- neovim issue(#24075) soft tab stop breaks backspace on inline virtual text
 				lspconfig["rust_analyzer"].setup({
 					settings = {
 						["rust-analyzer"] = {

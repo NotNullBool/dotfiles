@@ -55,6 +55,12 @@ keymap.set('n', '<leader>lz', function ()
 	print(string.format("Lazy redraw is: %s", vim.opt.lazyredraw:get()))
 end, {desc= "Toggle lazy redraw."})
 
+-- keymap.set('i','<BS>', function ()
+-- 	local var = string.sub(vim.fn.getline("."), 1, vim.fn.col(".")-1)
+-- 	print(var ~=0)
+-- 	return "<BS>"
+-- end, {expr = true, noremap = true})
+
 keymap.set('c', "<CR>", function ()
 	if vim.fn.pumvisible() == 1 then
 		return "<C-y>"
