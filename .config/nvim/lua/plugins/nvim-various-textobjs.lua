@@ -2,7 +2,7 @@ return {
 	"chrisgrieser/nvim-various-textobjs",
 	keys ={
 
-		{"R", "<cmd>lua require('various-textobjs').restOfIndentation()<CR>", mode = { "o", "x" }},
+		{"iR", "<cmd>lua require('various-textobjs').restOfIndentation()<CR>", mode = { "o", "x" }},
 
 		{"ig", "<cmd>lua require('various-textobjs').greedyOuterIndentation('inner')<CR>", mode = { "o", "x" }},
 		{"ag", "<cmd>lua require('various-textobjs').greedyOuterIndentation('outer')<CR>", mode = { "o", "x" }},
@@ -14,7 +14,7 @@ return {
 
 		{"Q", "<cmd>lua require('various-textobjs').toNextQuotationMark()<CR>", mode = { "o", "x" }},
 
-		{"r", "<cmd>lua require('various-textobjs').restOfParagraph()<CR>", mode = { "o", "x" }},
+		{"pr", "<cmd>lua require('various-textobjs').restOfParagraph()<CR>", mode = { "o", "x" }},
 
 		{"gG", "<cmd>lua require('various-textobjs').entireBuffer()<CR>", mode = { "o", "x" }},
 
