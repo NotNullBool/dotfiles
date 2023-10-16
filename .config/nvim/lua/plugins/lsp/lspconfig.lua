@@ -71,9 +71,10 @@ return {{
 
 				if (vim.version().minor > 9) and server_capabilities.inlayHintProvider then
 					vim.lsp.inlay_hint(bufnr, true)
-                    local softtab = vim.bo.softtabstop
-				    if softtab ~= 0 then
-				        vim.bo.tabstop = softtab
+
+                    -- neovim issue(#24075) soft tab stop breaks backspace on inline virtual text
+				    if vim.bo.softtabstop ~= 0 then
+				        vim.bo.tabstop = vim.bo.softtabstop
 				        vim.bo.softtabstop = 0
 				    end
 				end
@@ -120,7 +121,6 @@ return {{
 
 			-- example of how to overide the default setup
 			["rust_analyzer"] = function ()
-				-- vim.g.rust_recommended_style = 0 -- neovim issue(#24075) soft tab stop breaks backspace on inline virtual text
 				lspconfig["rust_analyzer"].setup({
 					settings = {
 						["rust-analyzer"] = {
