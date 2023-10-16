@@ -75,6 +75,7 @@ return {{
                     if vim.bo.softtabstop ~= 0 then
                         vim.bo.tabstop = vim.bo.softtabstop
                         vim.bo.softtabstop = 0
+                        vim.bo.expandtab = true
                     end
                 end
 
