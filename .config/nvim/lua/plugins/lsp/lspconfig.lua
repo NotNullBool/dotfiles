@@ -69,15 +69,14 @@ return {{
 					keymap.set('i', "<C-K>", vim.lsp.buf.signature_help, opts)
 				end
 
-				if (vim.version().minor > 9) and server_capabilities.inlayHintProvider then
-					vim.lsp.inlay_hint(bufnr, true)
-
+                if (vim.version().minor > 9) and server_capabilities.inlayHintProvider then
+                    vim.lsp.inlay_hint(bufnr, true)
                     -- neovim issue(#24075) soft tab stop breaks backspace on inline virtual text
-				    if vim.bo.softtabstop ~= 0 then
-				        vim.bo.tabstop = vim.bo.softtabstop
-				        vim.bo.softtabstop = 0
-				    end
-				end
+                    if vim.bo.softtabstop ~= 0 then
+                        vim.bo.tabstop = vim.bo.softtabstop
+                        vim.bo.softtabstop = 0
+                    end
+                end
 
 				opts.desc = "Show workspace diagnostics"
 				keymap.set("n", "gW", "<cmd>Telescope diagnostics<CR>", opts)
