@@ -1,4 +1,11 @@
 return {
+    -- TEST:hello world
+    -- TODO:hello world
+    -- FIXME:hello world
+    -- HACK:hello world
+    -- PERF:hello world
+    -- WARN:hello world
+    -- NOTE:hello world
 	"folke/todo-comments.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = { "nvim-lua/plenary.nvim" },
@@ -8,12 +15,12 @@ return {
 				icon = "󰚐 "
 			}
 		},
-		highlight = {
-			pattern = [[.*<(KEYWORDS)\s*]]
-		},
-		search = {
-			pattern = [[\b(KEYWORDS)\b]]
-		}
+		-- highlight = {
+		-- 	pattern = [[.*<(KEYWORDS)\s*]]
+		-- },
+		-- search = {
+		-- 	pattern = [[\b(KEYWORDS)\b]]
+		-- }
 	},
 	config = function(_, opts)
 		local todo = require("todo-comments")
