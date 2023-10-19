@@ -15,12 +15,12 @@ return {
 				icon = "󰚐 "
 			}
 		},
-		-- highlight = {
+		highlight = {
 		-- 	pattern = [[.*<(KEYWORDS)\s*]]
 		-- },
 		-- search = {
 		-- 	pattern = [[\b(KEYWORDS)\b]]
-		-- }
+		}
 	},
 	config = function(_, opts)
 		local todo = require("todo-comments")
