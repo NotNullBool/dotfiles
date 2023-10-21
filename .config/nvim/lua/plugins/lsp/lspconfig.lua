@@ -72,7 +72,7 @@ return {{
                 if (vim.version().minor > 9) and server_capabilities.inlayHintProvider then
                     vim.lsp.inlay_hint(bufnr, true)
                     -- neovim issue(#24075) soft tab stop breaks backspace on inline virtual text
-                    if vim.bo.softtabstop >= 0 then
+                    if vim.bo.softtabstop > 0 then
                         vim.bo.tabstop = vim.bo.softtabstop
                         vim.bo.softtabstop = 0
                         vim.bo.expandtab = true
