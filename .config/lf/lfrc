@@ -1,5 +1,5 @@
-set previewer ~/.dotfiles/.config/lf/lf_kitty_preview
-set cleaner ~/.config/lf/lf_kitty_clean
+set previewer ~/.dotfiles/.config/lf/preview
+set cleaner ~/.dotfiles/.config/lf/cleaner
 
 #zoxide
 #cmd z %{{
